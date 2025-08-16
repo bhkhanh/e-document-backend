@@ -1,0 +1,45 @@
+# --------------------------------------------------
+# Black formatter configuration
+[tool.black]
+target-version = ["py313"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+    \.git
+  | build
+  | dist
+  | .*/static
+  | .*/media
+)/
+'''
+
+
+# --------------------------------------------------
+
+# isort configuration
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+known_django = ["django"]
+sections = [
+    "FUTURE",
+    "STDLIB",
+    "DJANGO",
+    "THIRDPARTY",
+    "FIRSTPARTY",
+    "LOCALFOLDER",
+]
+
+# --------------------------------------------------
+
+# Flake8 configuration
+[tool.flake8]
+max-line-length = 88
+max-complexity = 10
+count = true
+extend-ignore = [
+    "E203", # Whitespace before ':'
+    "W503", # Line break before binary operator
+]
+extend-exclude = ["*/migrations/", "*/static/", "*/media/"]
