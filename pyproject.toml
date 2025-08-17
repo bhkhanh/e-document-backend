@@ -41,5 +41,6 @@ count = true
 extend-ignore = [
     "E203", # Whitespace before ':'
     "W503", # Line break before binary operator
+    "E501", # Line too long
 ]
 extend-exclude = ["*/migrations/", "*/static/", "*/media/"]
