@@ -10,6 +10,7 @@ extend-exclude = '''
   | dist
   | .*/static
   | .*/media
+  | .*/migrations
 )/
 '''
 
@@ -30,6 +31,7 @@ sections = [
     "FIRSTPARTY",
     "LOCALFOLDER",
 ]
+skip = ["migrations"]
 
 # --------------------------------------------------
 
@@ -43,4 +45,4 @@ extend-ignore = [
     "W503", # Line break before binary operator
     "E501", # Line too long
 ]
-extend-exclude = ["*/migrations/", "*/static/", "*/media/"]
+extend-exclude = ["*/migrations/", "*/static/", "*/media/", ".git"]
