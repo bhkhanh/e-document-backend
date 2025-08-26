@@ -1,0 +1,30 @@
+# project name
+name: e-document
+
+services:
+  # database
+  db:
+    image: postgres:17-alpine
+    restart: always
+    networks:
+      - e-document_network
+  
+  # back-end app
+  back-end:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    restart: always
+    networks:
+      - e-document_network
+
+
+# network definition
+networks:
+  e-document_network:
+    name: e-document_network
+    ipam:
+      config:
+        - subnet: 192.168.111.0/24

@@ -1,0 +1,29 @@
+services:
+  # database
+  db:
+    container_name: e-document_database-dev
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./env/db/.env.dev
+    volumes:
+      - e-document_volume-database-dev:/var/lib/postgresql/data
+  
+  # back-end app
+  back-end:
+    build:
+      target: dev
+    image: e-document_backend:dev
+    container_name: e-document_backend-dev
+    ports:
+      - "8000:8888"
+    env_file:
+      - ./env/app/.env.dev
+    volumes:
+      - .:/usr/src
+
+
+# volume definition
+volumes:
+  e-document_volume-database-dev:
+    name: e-document_volume-database-dev
