@@ -8,7 +8,7 @@ from unidecode import unidecode
 
 
 def generate_uuid_without_hyphens() -> str:
-    """Generate UUID value, but remove all hyphen characters in it."""
+    """Generate UUID value automatically, but remove all hyphen characters in it."""
     return str(uuid.uuid4().hex)
 
 
@@ -21,8 +21,12 @@ def slugify_value_to_ASCII(val: str) -> str:
 
 
 def customize_datetime_display(obj, field, custom_format=None):
-    field_value = field.value_from_object(obj)
+    """
+    Customize the format of DateTimeField or DateField for displaying.
+    If not specify custom format, it will display as application definition.
+    """
 
+    field_value = field.value_from_object(obj)
     if custom_format is None:
         if isinstance(field, DateTimeField):
             custom_format = "%H:%M, %d/%m/%Y"
@@ -30,5 +34,4 @@ def customize_datetime_display(obj, field, custom_format=None):
             return local_datetime.strftime(format=custom_format)
         elif isinstance(field, DateField):
             custom_format = "%d/%m/%Y"
-
     return field_value.strftime(format=custom_format)
